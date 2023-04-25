@@ -21,7 +21,9 @@ export class Tab2Page {
   searchTerm: string;
 
   constructor() {}
-  Users: any = sampleData
+  Users: any = sampleData 
+
+  
 
 
 
