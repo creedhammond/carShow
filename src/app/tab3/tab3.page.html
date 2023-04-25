@@ -1,7 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col> <img id="header_logo" src="../../assets/aaca_logo.png" /></ion-col>
+          <ion-col> About & Contact </ion-col>
+          <ion-col><img id="header_logo" src="../../assets/kcam_logo.png" /></ion-col>
+        </ion-row>
+      </ion-grid>
+        
+          
+        
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +21,91 @@
       <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header>
+ 
+ 
+  <ion-card>
+    <ion-thumbnail>
+    <img alt="Silhouette of mountains" src="../../assets/ACCKCLogo.png" /></ion-thumbnail>
+    <ion-card-header>
+      <ion-card-title>ACCKC</ion-card-title>
+      <ion-card-subtitle>To add or modify an event email acckcevents@gmail.com</ion-card-subtitle>
+    
+    </ion-card-header>
+  
+    <ion-card-content>
+      Welcome to the official Midwest Event Finder of the ACCKC, your go-to resource for local car show information. For decades, we've been dedicated to gathering and sharing details about the most exciting automotive events in the area. Our journey began with flyers, but as technology advanced, so did we. We moved on to Hemmings event finder and then created a sub-site on the Kansas City Automotive Museum website. Today, we are proud to offer our app, available on both Apple and Android devices. With ACCKC, you'll never miss a car show again! 
+    </ion-card-content>
+  </ion-card>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card>
+    <ion-thumbnail>
+    <img alt="Silhouette of mountains" src="../../assets/kcam.png" />
+    </ion-thumbnail>
+    <ion-card-header>
+      <ion-card-title>Kansas City Automotive Museum</ion-card-title>
+      <ion-card-subtitle>Kansas City Automotive Museum is proud to web host the Event Finder.</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      The Kansas City area is home to major automotive and motorcycle manufacturing, racing, and a vibrant collector community. We have a long, storied, and proud automotive heritage that needs to be preserved and celebrated.
+    </ion-card-content>
+    <ion-grid id="colLogo" [fixed]="true">
+      <ion-row fill="primary">
+        <ion-col> <ion-button fill="clear" a href="https://www.facebook.com/KansasCityAutoMuseum/" target="_blank">
+          <ion-icon  name="logo-facebook"></ion-icon>
+                </ion-button> </ion-col>
+        <ion-col> <ion-button fill="clear" a href="https://kansascityautomuseum.com/" target="_blank">
+          <ion-icon name="globe-outline"></ion-icon> 
+                </ion-button></ion-col>
+        <ion-col><ion-button fill="clear" a href="mailto: info@kcautomuseum.com" target="_blank">
+          <ion-icon  name="mail-outline"></ion-icon>
+                </ion-button></ion-col>
+      
+        <ion-col> <ion-button fill="clear"  a href="https://www.linkedin.com/company/kansas-city-automotive-museum/" target="_blank">
+          <ion-icon  name="logo-linkedin"></ion-icon> 
+               </ion-button></ion-col>
+        
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-thumbnail>
+    <img alt="Silhouette of mountains" src="../../assets/cass2.jpg" /></ion-thumbnail>
+    <ion-card-header>
+      <ion-card-title>Cassondra Reed Hammond, PMP®</ion-card-title>
+      <ion-card-subtitle>Project Manger & Developer </ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      Introducing an app that I created! With my experience as the Operations and Events Manager for the Kansas City Automotive Museum for over 7 years, I was able to partner with them and the ACCKC to create this Midwest Event Finder app. I possess technical expertise in HTML, CSS, JavaScript, and Angular. If you're in need of an app developer or project manager, don't hesitate to reach out to me. I would be delighted to connect with you on LinkedIn and learn more about what you do!
+    </ion-card-content>
+ 
+    
+  
+    
+  
+   
+    <ion-grid id="colLogo" [fixed]="true">
+      <ion-row fill="primary">
+        <ion-col> <ion-button fill="clear"  a href="https://www.linkedin.com/in/cassondra-reed-hammond-pmp%C2%AE-968476126/" target="_blank">
+          <ion-icon  name="logo-linkedin"></ion-icon> 
+              </ion-button></ion-col>
+        <ion-col> <ion-button fill="clear" a href="" target="_blank">
+          <ion-icon  name="logo-github"></ion-icon>
+                </ion-button> </ion-col>
+        <ion-col><ion-button fill="clear" a href="mailto: creed.hammond@gmail.com" target="_blank">
+          <ion-icon  name="mail-outline"></ion-icon>
+                </ion-button></ion-col>
+        <ion-col> <ion-button fill="clear" a href="" target="_blank">
+          <ion-icon name="globe-outline"></ion-icon> 
+                </ion-button></ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </ion-card>
+
+
 </ion-content>

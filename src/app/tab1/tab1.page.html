@@ -1,7 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col> <img id="header_logo" src="../../assets/aaca_logo.png" /></ion-col>
+          <ion-col> Featured Events </ion-col>
+          <ion-col><img id="header_logo" src="../../assets/kcam_logo.png" /></ion-col>
+        </ion-row>
+      </ion-grid>
+        
+          
+        
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,5 +22,76 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle> Event content managed and maintained by ACCKC. </ion-card-subtitle>
+  
+    </ion-card-header>
+  
+    <ion-item>
+      <ion-label  class="ion-text-wrap">
+        All events are subject to cancellation without notice;
+        Call to confirm.  Accuracy cannot be guaranteed.
+      </ion-label>
+    </ion-item>
+  
+  </ion-card>
+  <ion-card>
+    <ion-thumbnail>
+      <img src="../../assets/GrayCar2.JPG"/>
+      </ion-thumbnail>
+      <ion-card-header>
+      <ion-card-title>Underground Vechile Storage </ion-card-title>
+     <ion-card-subtitle>Words go here </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+     <ion-button  a href="https://kansascityautomuseum.com/vehicle-storage-application/ " target="_blank">
+      <ion-icon slot="start" name="car-sport-outline"></ion-icon>
+     Add to our Collection
+    </ion-button>
+  </ion-card-content>
+   
+  </ion-card>
+   
+
+<div *ngFor="let users of Users"> 
+  <ion-card  *ngIf="users.featured && (users.dates | date:'YYYY-MM') > (currentDate | date:'YYYY-MM')"> 
+    <ion-card *ngIf="(users.dates | date:'YYYY-MM') > (currentDate | date:'YYYY-MM')"></ion-card>
+    <img *ngIf="users.image" alt="{{users.title}} image" src="../../assets/{{users.image}}">
+      
+  
+    <ion-card-header>
+      <p id="soldOut" *ngIf="users.soldOut" >  SOLD OUT </p> 
+      <ion-card-title [ngStyle]="{'color': users.featured === true ? 'Black' : 'gray'}">{{users.title}}</ion-card-title>
+      <ion-card-subtitle ><code><ion-icon name="calendar-outline"></ion-icon>   {{users.dates | date:'MMMM d, y'}}</code> <code *ngIf="users.endDates"> - {{users.endDates | date:'MMMM d, y'}} </code> </ion-card-subtitle>  
+     
+      <ion-card-subtitle> <a href="https://{{users.webaddress}}" target="_blank"> {{users.webaddress}} </a>  </ion-card-subtitle>
+      <ion-card-subtitle *ngIf="users.contact" > {{users.contact}} </ion-card-subtitle> 
+      <ion-card-subtitle *ngIf="users.cost" >  <ion-icon name="cash-outline"></ion-icon> {{users.cost}} </ion-card-subtitle> 
+      <ion-card-subtitle *ngIf="users.prizes" ><ion-icon name="trophy-outline"></ion-icon>  {{users.prizes}} </ion-card-subtitle> 
+      <ion-card-subtitle *ngIf="users.address"> <ion-icon name="navigate-outline"></ion-icon> {{users.address}} | {{users.cityState}}</ion-card-subtitle>
+    </ion-card-header>
+    
+  
+    <ion-card-content>
+
+      {{users.details}}
+      <ion-card-subtitle id="ben" *ngIf="users.benefit"> {{users.benefit}}  </ion-card-subtitle>
+    <p></p>
+  
+    <ion-button *ngIf="users.flyer" a href="{{users.flyer}}" target="_blank">
+      <ion-icon slot="start" name="newspaper-outline"></ion-icon>
+      Flyer
+    </ion-button>
+    <ion-button *ngIf="users.register && !users.soldOut" a href="{{users.register}}" target="_blank">
+      <ion-icon slot="start" name="car-sport-outline"></ion-icon>
+      Register Your Vehicle
+    </ion-button>
+  </ion-card-content>
+  </ion-card>
+
+
+
+</div>
+  
 </ion-content>
