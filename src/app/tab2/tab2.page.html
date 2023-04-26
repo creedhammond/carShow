@@ -59,47 +59,49 @@
    Add to our Collection
   </ion-button>
 </ion-card-content>
+
  
 </ion-card>
 
+<ion-card><ion-button (click)="uploadData()">Upload Data</ion-button></ion-card>
 
   
+ 
 
+   <div *ngFor="let carShowArray of carShowFinal$ | async | filter:searchTerm ">
+    <ion-card *ngIf="(carShowArray.dates | date:'YYYY-MM') >= (currentDate | date:'YYYY-MM')">
 
-   <div *ngFor="let users of Users |  filter:searchTerm">
-    <ion-card *ngIf="(users.dates | date:'YYYY-MM') >= (currentDate | date:'YYYY-MM')">
-
-          <div [ngStyle]="{'background-color': users.featured === true ? 'lightgray' : 'white'}">
+          <div [ngStyle]="{'background-color': carShowArray.featured === true ? 'lightgray' : 'white'}">
            
       
       
-      <ion-thumbnail *ngIf="users.image">
-        <img  alt="{{users.title}} image" src="../../assets/{{users.image}}"/>
+      <ion-thumbnail *ngIf="carShowArray.image">
+        <img  alt="{{carShowArray.title}} image" src="../../assets/{{carShowArray.image}}"/>
       </ion-thumbnail>
       <ion-card-header>
-        <p id="soldOut" *ngIf="users.soldOut" >  SOLD OUT </p> 
-        <ion-card-title [ngStyle]="{'color': users.featured === true ? 'Black' : 'gray'}">{{users.title}}</ion-card-title>
-        <ion-card-subtitle ><code><ion-icon name="calendar-outline"></ion-icon>   {{users.dates | date:'MMMM d, y' }}</code> <code *ngIf="users.endDates"> - {{users.endDates | date:'MMMM d, y'}} </code> </ion-card-subtitle>  
+        <p id="soldOut" *ngIf="carShowArray.soldOut" >  SOLD OUT </p> 
+        <ion-card-title [ngStyle]="{'color': carShowArray.featured === true ? 'Black' : 'gray'}">{{carShowArray.title}}</ion-card-title>
+        <ion-card-subtitle ><code><ion-icon name="calendar-outline"></ion-icon>   {{carShowArray.dates | date:'MMMM d, y' }}</code> <code *ngIf="carShowArray.endDate"> - {{carShowArray.endDate | date:'MMMM d, y'}} </code> </ion-card-subtitle>  
        
-        <ion-card-subtitle> <a href="https://{{users.webaddress}}" target="_blank"> {{users.webaddress}} </a>  </ion-card-subtitle>
-        <ion-card-subtitle *ngIf="users.contact" > {{users.contact}} </ion-card-subtitle> 
-        <ion-card-subtitle *ngIf="users.cost" >  <ion-icon name="cash-outline"></ion-icon> {{users.cost}} </ion-card-subtitle> 
-        <ion-card-subtitle *ngIf="users.prizes" ><ion-icon name="trophy-outline"></ion-icon>  {{users.prizes}} </ion-card-subtitle> 
-        <ion-card-subtitle *ngIf="users.address"> <ion-icon name="navigate-outline"></ion-icon> {{users.address}} | {{users.cityState}}</ion-card-subtitle>
+        <ion-card-subtitle> <a href="https://{{carShowArray.webaddress}}" target="_blank"> {{carShowArray.webaddress}} </a>  </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="carShowArray.contact" > {{carShowArray.contact}} </ion-card-subtitle> 
+        <ion-card-subtitle *ngIf="carShowArray.cost" >  <ion-icon name="cash-outline"></ion-icon> {{carShowArray.cost}} </ion-card-subtitle> 
+        <ion-card-subtitle *ngIf="carShowArray.prizes" ><ion-icon name="trophy-outline"></ion-icon>  {{carShowArray.prizes}} </ion-card-subtitle> 
+        <ion-card-subtitle *ngIf="carShowArray.address"> <ion-icon name="navigate-outline"></ion-icon> {{carShowArray.address}} | {{carShowArray.cityState}}</ion-card-subtitle>
       </ion-card-header>
       
     
       <ion-card-content>
  
-        {{users.details}}
-        <ion-card-subtitle id="ben" *ngIf="users.benefit"> {{users.benefit}}  </ion-card-subtitle>
+        {{carShowArray.details}}
+        <ion-card-subtitle id="ben" *ngIf="carShowArray.benefit"> {{carShowArray.benefit}}  </ion-card-subtitle>
       <p></p>
     
-      <ion-button *ngIf="users.flyer" a href="{{users.flyer}}" target="_blank">
+      <ion-button *ngIf="carShowArray.flyer" a href="{{carShowArray.flyer}}" target="_blank">
         <ion-icon slot="start" name="newspaper-outline"></ion-icon>
         Flyer
       </ion-button>
-      <ion-button *ngIf="users.register && !users.soldOut" a href="{{users.register}}" target="_blank">
+      <ion-button *ngIf="carShowArray.register && !carShowArray.soldOut" a href="{{carShowArray.register}}" target="_blank">
         <ion-icon slot="start" name="car-sport-outline"></ion-icon>
         Register Your Vehicle
       </ion-button>
@@ -108,5 +110,7 @@
     </ion-card>
 
    </div>
+  
+   
 </ion-content>
 
