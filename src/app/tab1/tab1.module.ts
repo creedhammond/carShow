@@ -4,8 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 
 @NgModule({
   imports: [
@@ -13,7 +16,9 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    ReactiveFormsModule,
+    AngularFireStorageModule
   ],
   declarations: [Tab1Page]
 })

@@ -8,18 +8,11 @@
           <ion-col><img id="header_logo" src="../../assets/kcam_logo.png" /></ion-col>
         </ion-row>
       </ion-grid>
-        
-          
-        
     </ion-title>
   </ion-toolbar>
-  <ion-header>
-    <ion-toolbar>
-      <ion-searchbar
-      [(ngModel)]="searchTerm">
-    </ion-searchbar>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="searchTerm"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -29,61 +22,50 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-card>
-  <ion-card-header>
-    <ion-card-subtitle> Event content managed and maintained by ACCKC. </ion-card-subtitle>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle> Event content managed and maintained by ACCKC. </ion-card-subtitle>
+    </ion-card-header>
+    <ion-item>
+      <ion-label class="ion-text-wrap">
+        All events are subject to cancellation without notice; Call to confirm. Accuracy cannot be guaranteed.
+      </ion-label>
+    </ion-item>
+  </ion-card>
 
-  </ion-card-header>
-
-  <ion-item>
-    <ion-label  class="ion-text-wrap">
-      All events are subject to cancellation without notice;
-      Call to confirm.  Accuracy cannot be guaranteed.
-    </ion-label>
-  </ion-item>
-
-</ion-card>
-
-
-<ion-card>
-  <ion-thumbnail>
-    <img src="../../assets/GrayCar2.JPG"/>
+  <ion-card>
+    <ion-thumbnail>
+      <img src="../../assets/GrayCar2.JPG"/>
     </ion-thumbnail>
     <ion-card-header>
-    <ion-card-title>Underground Vechile Storage </ion-card-title>
-   <ion-card-subtitle>Words go here </ion-card-subtitle>
-  </ion-card-header>
-  <ion-card-content>
-   <ion-button  a href="https://kansascityautomuseum.com/vehicle-storage-application/ " target="_blank">
-    <ion-icon slot="start" name="car-sport-outline"></ion-icon>
-   Add to our Collection
-  </ion-button>
-</ion-card-content>
+      <ion-card-title>Underground Vehicle Storage</ion-card-title>
+      <ion-card-subtitle>Words go here</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button a href="https://kansascityautomuseum.com/vehicle-storage-application/" target="_blank">
+        <ion-icon slot="start" name="car-sport-outline"></ion-icon>
+        Add to our Collection
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 
- 
-</ion-card>
-
-<ion-card><ion-button (click)="uploadData()">Upload Data</ion-button></ion-card>
-
-  
- 
-
-   <div *ngFor="let carShowArray of carShowFinal$ | async | filter:searchTerm ">
+  <div *ngFor="let carShowArray of carShowFinal$ | async | filter:searchTerm">
     <ion-card *ngIf="(carShowArray.dates | date:'YYYY-MM') >= (currentDate | date:'YYYY-MM')">
+      <div [ngStyle]="{'background-color': carShowArray.featured === true ? 'lightgray' : 'white'}">
+        <ion-thumbnail *ngIf="carShowArray.image">
+          <img alt="{{carShowArray.title}} image" src="../../assets/{{carShowArray.image}}"/>
+        </ion-thumbnail>
+        <ion-card-header>
+          <p id="soldOut" *ngIf="carShowArray.soldOut">SOLD OUT</p>
 
-          <div [ngStyle]="{'background-color': carShowArray.featured === true ? 'lightgray' : 'white'}">
-           
-      
-      
-      <ion-thumbnail *ngIf="carShowArray.image">
-        <img  alt="{{carShowArray.title}} image" src="../../assets/{{carShowArray.image}}"/>
-      </ion-thumbnail>
-      <ion-card-header>
-        <p id="soldOut" *ngIf="carShowArray.soldOut" >  SOLD OUT </p> 
         <ion-card-title [ngStyle]="{'color': carShowArray.featured === true ? 'Black' : 'gray'}">{{carShowArray.title}}</ion-card-title>
         <ion-card-subtitle ><code><ion-icon name="calendar-outline"></ion-icon>   {{carShowArray.dates | date:'MMMM d, y' }}</code> <code *ngIf="carShowArray.endDate"> - {{carShowArray.endDate | date:'MMMM d, y'}} </code> </ion-card-subtitle>  
        
-        <ion-card-subtitle> <a href="https://{{carShowArray.webaddress}}" target="_blank"> {{carShowArray.webaddress}} </a>  </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="carShowArray.webaddress">
+          <a href="{{carShowArray.webaddress.startsWith('http') ? carShowArray.webaddress : 'http://' + carShowArray.webaddress}}" target="_blank">
+            {{carShowArray.webaddress}}
+          </a>
+        </ion-card-subtitle>
         <ion-card-subtitle *ngIf="carShowArray.contact" > {{carShowArray.contact}} </ion-card-subtitle> 
         <ion-card-subtitle *ngIf="carShowArray.cost" >  <ion-icon name="cash-outline"></ion-icon> {{carShowArray.cost}} </ion-card-subtitle> 
         <ion-card-subtitle *ngIf="carShowArray.prizes" ><ion-icon name="trophy-outline"></ion-icon>  {{carShowArray.prizes}} </ion-card-subtitle> 
@@ -97,14 +79,15 @@
         <ion-card-subtitle id="ben" *ngIf="carShowArray.benefit"> {{carShowArray.benefit}}  </ion-card-subtitle>
       <p></p>
     
-      <ion-button *ngIf="carShowArray.flyer" a href="{{carShowArray.flyer}}" target="_blank">
+      <ion-button *ngIf="carShowArray.flyer" a href="{{carShowArray.flyer && carShowArray.flyer.startsWith('http') ? carShowArray.flyer : 'http://' + carShowArray.flyer}}" target="_blank">
         <ion-icon slot="start" name="newspaper-outline"></ion-icon>
         Flyer
-      </ion-button>
-      <ion-button *ngIf="carShowArray.register && !carShowArray.soldOut" a href="{{carShowArray.register}}" target="_blank">
+    </ion-button>
+    <ion-button *ngIf="carShowArray.register && !carShowArray.soldOut" a href="{{carShowArray.register && carShowArray.register.startsWith('https') ? carShowArray.register : 'https://' + carShowArray.register}}" target="_blank"> 
         <ion-icon slot="start" name="car-sport-outline"></ion-icon>
         Register Your Vehicle
-      </ion-button>
+    </ion-button> 
+    
     </ion-card-content>
   </div>
     </ion-card>

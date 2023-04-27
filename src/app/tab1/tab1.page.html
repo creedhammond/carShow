@@ -4,7 +4,7 @@
       <ion-grid [fixed]="true">
         <ion-row>
           <ion-col> <img id="header_logo" src="../../assets/aaca_logo.png" /></ion-col>
-          <ion-col> Featured Events </ion-col>
+          <ion-col> Add an Event </ion-col>
           <ion-col><img id="header_logo" src="../../assets/kcam_logo.png" /></ion-col>
         </ion-row>
       </ion-grid>
@@ -15,83 +15,137 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-card>
+  
+<ion-content>
+<ion-card>
     <ion-card-header>
-      <ion-card-subtitle> Event content managed and maintained by ACCKC. </ion-card-subtitle>
-  
+      <ion-card-title>Add Car Show or Event</ion-card-title>
+      <ion-card-subtitle>You can fill out the form below or email acckcevents@gmail.com to submit your event. </ion-card-subtitle>
     </ion-card-header>
   
-    <ion-item>
-      <ion-label  class="ion-text-wrap">
-        All events are subject to cancellation without notice;
-        Call to confirm.  Accuracy cannot be guaranteed.
-      </ion-label>
-    </ion-item>
-  
-  </ion-card>
-  <ion-card>
-    <ion-thumbnail>
-      <img src="../../assets/GrayCar2.JPG"/>
-      </ion-thumbnail>
-      <ion-card-header>
-      <ion-card-title>Underground Vechile Storage </ion-card-title>
-     <ion-card-subtitle>Words go here </ion-card-subtitle>
-    </ion-card-header>
     <ion-card-content>
-     <ion-button  a href="https://kansascityautomuseum.com/vehicle-storage-application/ " target="_blank">
-      <ion-icon slot="start" name="car-sport-outline"></ion-icon>
-     Add to our Collection
-    </ion-button>
-  </ion-card-content>
-   
-  </ion-card>
-   
+    
+    
 
-<div *ngFor="let users of Users"> 
-  <ion-card  *ngIf="users.featured && (users.dates | date:'YYYY-MM') > (currentDate | date:'YYYY-MM')"> 
-    <ion-card *ngIf="(users.dates | date:'YYYY-MM') > (currentDate | date:'YYYY-MM')"></ion-card>
-    <img *ngIf="users.image" alt="{{users.title}} image" src="../../assets/{{users.image}}">
-      
   
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="carShowForm">
+         
+            <ion-item>
+              <ion-label position="stacked">Dates *</ion-label>
+              <p id="inputdetails">To avoid being placed at the bottom of the list, it's important to adhere to the proper date format for your event.</p>
+              <ion-input formControlName="dates" type="text" placeholder="YYYY-MM-DD"></ion-input>
+            </ion-item>
+            
+         
+          
+            <ion-item>
+              <ion-label position="stacked">End Date</ion-label>
+              <ion-input formControlName="endDate" type="text" placeholder="YYYY-MM-DD"></ion-input>
+            </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">City, State *</ion-label>
+            <ion-input formControlName="cityState" type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Title *</ion-label>
+            <ion-input formControlName="title" type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Address</ion-label>
+            <ion-input formControlName="address" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Cost</ion-label>
+            <ion-input formControlName="cost" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Web Address</ion-label>
+            <ion-input formControlName="webaddress" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Contact</ion-label>
+            <ion-input formControlName="contact" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Prizes</ion-label>
+            <ion-input formControlName="prizes" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Details *</ion-label>
+            <ion-input formControlName="details" type="text" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Flyer</ion-label>
+            <p id="inputdetails">You need to provide a link to a copy of the flyer hosted on your own website or a drive. Please ensure that the permissions are set to allow anyone to view it.</p>
+            <ion-input formControlName="flyer" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Registration Link</ion-label>
+            <ion-input formControlName="register" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Image URL</ion-label>
+            <input type="file" (change)="onFileSelected($event)">
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Sold Out</ion-label>
+            <p id="inputdetails">Check box if your event is sold out otherwise leave blank. </p>
+            <ion-checkbox formControlName="soldOut"></ion-checkbox>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Benefit</ion-label>
+            <ion-input formControlName="benefit" type="text"></ion-input>
+          </ion-item>
+
+          <ion-button expand="block" color="primary" (click)="addCarShow()">Add Car Show</ion-button>
+
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card-content>
+</ion-card>
+
+<ion-card>
+
     <ion-card-header>
-      <p id="soldOut" *ngIf="users.soldOut" >  SOLD OUT </p> 
-      <ion-card-title [ngStyle]="{'color': users.featured === true ? 'Black' : 'gray'}">{{users.title}}</ion-card-title>
-      <ion-card-subtitle ><code><ion-icon name="calendar-outline"></ion-icon>   {{users.dates | date:'MMMM d, y'}}</code> <code *ngIf="users.endDates"> - {{users.endDates | date:'MMMM d, y'}} </code> </ion-card-subtitle>  
-     
-      <ion-card-subtitle> <a href="https://{{users.webaddress}}" target="_blank"> {{users.webaddress}} </a>  </ion-card-subtitle>
-      <ion-card-subtitle *ngIf="users.contact" > {{users.contact}} </ion-card-subtitle> 
-      <ion-card-subtitle *ngIf="users.cost" >  <ion-icon name="cash-outline"></ion-icon> {{users.cost}} </ion-card-subtitle> 
-      <ion-card-subtitle *ngIf="users.prizes" ><ion-icon name="trophy-outline"></ion-icon>  {{users.prizes}} </ion-card-subtitle> 
-      <ion-card-subtitle *ngIf="users.address"> <ion-icon name="navigate-outline"></ion-icon> {{users.address}} | {{users.cityState}}</ion-card-subtitle>
+      <ion-card-title>Bulk Upload </ion-card-title>
+      <ion-card-subtitle>*Admin Only* Formatted CSV file & Password Required </ion-card-subtitle>
     </ion-card-header>
+  
+    <ion-card-content>
+      Contact creed.hammond@gmail.com for access. 
     
   
-    <ion-card-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Select CSV file to upload</ion-label>
+      <input type="file" (change)="handleFileInput($event.target.files)">
+    </ion-item>
+  </ion-list>
 
-      {{users.details}}
-      <ion-card-subtitle id="ben" *ngIf="users.benefit"> {{users.benefit}}  </ion-card-subtitle>
-    <p></p>
-  
-    <ion-button *ngIf="users.flyer" a href="{{users.flyer}}" target="_blank">
-      <ion-icon slot="start" name="newspaper-outline"></ion-icon>
-      Flyer
-    </ion-button>
-    <ion-button *ngIf="users.register && !users.soldOut" a href="{{users.register}}" target="_blank">
-      <ion-icon slot="start" name="car-sport-outline"></ion-icon>
-      Register Your Vehicle
-    </ion-button>
-  </ion-card-content>
-  </ion-card>
-
-
-
-</div>
-  
+  <div *ngIf="fileData">
+    <p>Selected file: {{fileName}}</p>
+    <ion-button (click)="uploadData()">Upload Data to Firebase</ion-button>
+  </div>
+</ion-card-content>
+</ion-card>
 </ion-content>
+
