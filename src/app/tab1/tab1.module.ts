@@ -1,13 +1,12 @@
-import { IonicModule } from '@ionic/angular';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Tab1Page } from './tab1.page';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Tab1Page } from './tab1.page';
 
-import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { Tab1PageRoutingModule } from './tab1-routing.module';
 
 
 @NgModule({

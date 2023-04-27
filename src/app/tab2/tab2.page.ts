@@ -55,7 +55,7 @@ export class Tab2Page implements OnInit {
     this.carShowFinal$.subscribe(data => console.log(data));
   }
 
-
+/*
   uploadData() {
     const data = [
       {
@@ -86,5 +86,5 @@ export class Tab2Page implements OnInit {
       carShow.soldOut = carShow.soldOut === true || carShow.soldOut === 'true';
       this.firestore.collection('carShowFinal').add(carShow);
     });
-  }
+  }*/
 }
