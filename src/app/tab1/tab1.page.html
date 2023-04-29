@@ -29,10 +29,8 @@
 
   
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <form [formGroup]="carShowForm">
+  
+        <form id="test" [formGroup]="carShowForm">
          
             <ion-item>
               <ion-label position="stacked">Dates *</ion-label>
@@ -53,7 +51,7 @@
           </ion-item>
 
           <ion-item>
-            <ion-label position="stacked">Title *</ion-label>
+            <ion-label position="stacked">Event Name *</ion-label>
             <ion-input formControlName="title" type="text" required></ion-input>
           </ion-item>
 
@@ -98,10 +96,10 @@
             <ion-input formControlName="register" type="text"></ion-input>
           </ion-item>
 
-          <!-- <ion-item>
+           <ion-item>
             <ion-label position="stacked">Image URL</ion-label>
             <input type="file" (change)="onFileSelected($event)">
-          </ion-item> -->
+          </ion-item> 
 
           <ion-item>
             <ion-label position="stacked">Sold Out</ion-label>
@@ -117,9 +115,7 @@
           <ion-button expand="block" color="primary" (click)="addCarShow()">Add Car Show</ion-button>
 
         </form>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    
 </ion-card-content>
 </ion-card>
 

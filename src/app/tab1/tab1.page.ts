@@ -20,6 +20,7 @@ export class Tab1Page {
   fileName: string;
   currentDate = new Date();
   passwordEntered = false;
+  
 
   
   
@@ -65,7 +66,7 @@ export class Tab1Page {
         const indexToInsert = sortedData.findIndex(item => new Date(item.dates).getTime() > new Date(carShow.dates).getTime());
         if (indexToInsert === -1) {
           const lastItem = sortedData[sortedData.length - 1];
-          const idToInsertBefore = lastItem ? lastItem.id : null;
+          const idToInsertBefore = lastItem ? lastItem.id : 'default';
           const dataToInsert = { ...carShow };
           delete dataToInsert.id;
           this.firestore.collection('carShowFinal').doc(idToInsertBefore).collection('dummy').add({}).then((docRef) => {
@@ -77,7 +78,7 @@ export class Tab1Page {
               .catch(error => console.error(error));
           });
         } else {
-          const idToInsertBefore = indexToInsert > 0 ? sortedData[indexToInsert - 1].id : null;
+          const idToInsertBefore = indexToInsert > 0 ? sortedData[indexToInsert - 1].id : 'default';
           const dataToInsert = { ...carShow };
           delete dataToInsert.id;
           this.firestore.collection('carShowFinal').doc(idToInsertBefore).collection('dummy').add({}).then((docRef) => {
@@ -92,6 +93,7 @@ export class Tab1Page {
       });
     }
   }
+  
   
   handleFileInput(files: FileList) {
     const file = files.item(0);
@@ -119,7 +121,7 @@ uploadData() {
     var password = prompt("Please enter the password to upload data:");
   
     // Check if the password is correct
-    if (password === "OldCars1960") { // Replace "mypassword" with the actual password
+    if (password === "Oldcars1960") { // Replace "mypassword" with the actual password
       console.log("Password accepted.");
       // Upload the data here
       const db = firebase.firestore();
@@ -141,13 +143,12 @@ uploadData() {
     task.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
-          // do something with the URL, like save it in the database
+          this.carShowForm.get('image').setValue(url);
           console.log('File available at', url);
         });
       })
     ).subscribe();
   }
-
  
   
 }

@@ -15,12 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
 
   <ion-card>
     <ion-card-header>
@@ -49,11 +44,12 @@
     </ion-card-content>
   </ion-card>
 
-  <div *ngFor="let carShowArray of carShowFinal$ | async | filter:searchTerm">
-    <ion-card *ngIf="(carShowArray.dates | date:'YYYY-MM') >= (currentDate | date:'YYYY-MM')">
+  <div  *ngFor="let carShowArray of carShowFinal$ | async | filter:searchTerm">
+    <ion-card id="car-card" *ngIf="(carShowArray.dates | date:'YYYY-MM') >= (currentDate | date:'YYYY-MM')">
       <div [ngStyle]="{'background-color': carShowArray.featured === true ? 'lightgray' : 'white'}">
         <ion-thumbnail *ngIf="carShowArray.image">
-          <img alt="{{carShowArray.title}} image" src="../../assets/{{carShowArray.image}}"/>
+          <img alt="{{carShowArray.title}} image" src="{{carShowArray.image}}"/>
+        
         </ion-thumbnail>
         <ion-card-header>
           <p id="soldOut" *ngIf="carShowArray.soldOut">SOLD OUT</p>
@@ -87,6 +83,8 @@
         <ion-icon slot="start" name="car-sport-outline"></ion-icon>
         Register Your Vehicle
     </ion-button> 
+   
+
     
     </ion-card-content>
   </div>

@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormBuilder } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 interface CarShow {
-  id: number;
+  id: string;
   dates: string;
   endDate: string;
   cityState: string;
@@ -36,7 +37,7 @@ export class Tab2Page implements OnInit {
   currentDate = new Date();
   carShowFinal$: Observable<CarShow[]>;
 
-  constructor( private firestore: AngularFirestore, private fb: FormBuilder, private storage: AngularFireStorage) {}
+  constructor( private firestore: AngularFirestore, private fb: FormBuilder, private storage: AngularFireStorage, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.carShowFinal$ = this.firestore
@@ -53,6 +54,22 @@ export class Tab2Page implements OnInit {
       );
     
     this.carShowFinal$.subscribe(data => console.log(data));
+  }
+
+
+
+  updateCarShow(carShow: CarShow) {
+    this.firestore.collection('carShowFinal').doc(carShow.id).update(carShow)
+      .then(() => {
+        this.cdr.detectChanges(); // Trigger change detection
+      });
+  }
+  
+  deleteCarShow(carShow: CarShow) {
+    this.firestore.collection('carShowFinal').doc(carShow.id).delete()
+      .then(() => {
+        this.cdr.detectChanges(); // Trigger change detection
+      });
   }
 
 /*
@@ -86,5 +103,5 @@ export class Tab2Page implements OnInit {
       carShow.soldOut = carShow.soldOut === true || carShow.soldOut === 'true';
       this.firestore.collection('carShowFinal').add(carShow);
     });
-  }*/
+  } */
 }

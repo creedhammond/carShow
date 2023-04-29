@@ -24,3 +24,35 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+:root{
+    --ion-background-color:#f4f0e8;
+}
+
+form {
+    background-color:#fff;
+}
+
+ion-toolbar {
+    --background: #fff;
+    --color: #4a1f21;
+  
+
+  
+    --min-height: 80px;
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+  }
+
+  ion-tab-bar {
+    background-color: white;
+ }
+
+ ion-tab-button {
+    background-color: white;
+ }
+
+ ion-card { 
+    background-color:#fff;
+ }

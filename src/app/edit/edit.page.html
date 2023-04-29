@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Car Shows
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="selectedCarShow">
+    <ion-card-header>
+      <ion-card-title>Edit Car Show</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="editForm">
+      
+
+        <ion-item>
+          <ion-label position="floating">Date</ion-label>
+          <ion-input type="text" formControlName="dates" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">End Date</ion-label>
+          <ion-input type="text" formControlName="endDate" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">City, State</ion-label>
+          <ion-input type="text" formControlName="cityState" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Event Name</ion-label>
+          <ion-input type="text" formControlName="title" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Address</ion-label>
+          <ion-input type="text" formControlName="address" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Cost</ion-label>
+          <ion-input type="text" formControlName="cost" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Web Address</ion-label>
+          <ion-input type="text" formControlName="webaddress" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Contact</ion-label>
+          <ion-input type="text" formControlName="contact" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Prizes</ion-label>
+          <ion-input type="text" formControlName="prizes" ></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label position="floating">Details</ion-label>
+          <ion-input type="text" formControlName="details"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Flyer</ion-label>
+          <ion-input type="text" formControlName="flyer"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Flyer</ion-label>
+          <ion-input type="text" formControlName="register"></ion-input>
+        </ion-item>
+
+        
+        <ion-item>
+        <ion-select formControlName="soldOut" placeholder="Select Yes or No">
+          <ion-select-option value="true">Yes</ion-select-option>
+          <ion-select-option value="false">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Benefit</ion-label>
+        <ion-input type="text" formControlName="benefit"></ion-input>
+      </ion-item>
+
+
+
+      
+
+        <ion-button expand="block" (click)="saveChanges()">Save Changes</ion-button>
+        <ion-button expand="block" (click)="cancelChanges()">Cancel Changes</ion-button>
+        <ion-button expand="block" color="danger" (click)="deleteCarShow(selectedCarShow)">Delete Car Show</ion-button>
+        
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let carShow of carShows" (click)="editCarShow(carShow)">
+      <ion-label>{{carShow.title}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
